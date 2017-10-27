@@ -22,6 +22,9 @@ if [ ! -d "$clonedir" ]; then
   firstbuild=1
   Msg "Cloning Repo..."
   git clone https://github.com/lede-project/source $clonedir
+  cd $clonedir
+  git checkout v17.01.4
+  cd -
 fi
 
 if [ "$firstbuild" -eq "0" ]; then
