@@ -22,9 +22,7 @@ if [ ! -d "$clonedir" ]; then
   firstbuild=1
   Msg "Cloning Repo..."
   git clone https://github.com/lede-project/source $clonedir
-  cd $clonedir
   git checkout v17.01.4
-  cd -
 fi
 
 if [ "$firstbuild" -eq "0" ]; then
@@ -43,7 +41,11 @@ if [ "$firstbuild" -eq "1" ]; then
   cd $clonedir
   ./scripts/feeds update -a
   ./scripts/feeds install -a
-  if [ -f "../config/diffconfig" ]; then
+  if [ -f "../config/diffconfig.user" ]; then
+  	Msg "Applying and Expanding Users custom config..."
+  	cp ../config/diffconfig.user ./.config
+  	make defconfig
+  elif [ -f "../config/diffconfig" ]; then
   	Msg "Applying and Expanding config..."
   	cp ../config/diffconfig ./.config
   	make defconfig
@@ -60,7 +62,7 @@ fi
 
 Msg "Building Time!!!"
 cd $clonedir
-make -j$cpu_num V=s
+make -j$cpu_num #V=s
 
 if [ $? -ne 0 ]; then
   cd - > /dev/null
