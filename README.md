@@ -2,7 +2,7 @@
 
 Bring up repo for the PC Engines APU2 on LEDE!
 
-Based on latest stable (v17.05.1). Note that all major code has been
+Based on latest stable (v17.01.4). Note that all major code has been
 merged upstream. This repo will provide you with an example board profile
 and make config to help assist in building, but is not required.
 
