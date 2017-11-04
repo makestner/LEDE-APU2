@@ -25,13 +25,13 @@ if [ ! -d "$clonedir" ]; then
   git checkout v17.01.4
 fi
 
-if [ "$firstbuild" -eq "0" ]; then
-  Msg "Cleaning Builddir..."
-  cd $clonedir
-  rm -rf ./bin
-  make clean
-  cd - > /dev/null
-fi
+#if [ "$firstbuild" -eq "0" ]; then
+#  Msg "Cleaning Builddir..."
+#  cd $clonedir
+#  rm -rf ./bin
+#  make clean
+#  cd - > /dev/null
+#fi
 
 Msg "Applying overlay..."
 cp -R ./overlay/* $clonedir/
